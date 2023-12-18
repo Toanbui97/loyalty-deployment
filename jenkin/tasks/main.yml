@@ -1,3 +1,17 @@
+- name: Update apt
+  apt:
+    update_cache: true
+
+- name: Install fontconfig. For jenkins env
+  apt:
+    name: fontconfig
+    state: latest
+
+- name: Install Java 17. For jenkins env
+  apt:
+    name: openjdk-17-jre
+    state: present
+
 - name: Start by importing the GPG key. The GPG key verifies package integrity but there is no output
   shell:
     cmd: sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key

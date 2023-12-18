@@ -3,5 +3,6 @@
   hosts: master_node
   become: true
   roles:
-    - java-maven
+    #    - docker
+    #    - java-maven
     - jenkin
