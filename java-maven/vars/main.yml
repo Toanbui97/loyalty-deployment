@@ -1,0 +1,4 @@
+---
+java_download_localtion: /opt/openjdk-21.bin.tar.gz
+maven_download_localtion: /opt/maven-3.9.6.bin.tar.gz
+# vars file for java

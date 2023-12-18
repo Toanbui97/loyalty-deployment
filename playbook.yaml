@@ -1,0 +1,7 @@
+---
+- name: Install docker on master_node
+  hosts: master_node
+  become: true
+  roles:
+    - java-maven
+    - jenkin

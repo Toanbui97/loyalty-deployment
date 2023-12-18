@@ -1,0 +1,45 @@
+---
+- name: Update apt package
+  become: true
+  apt:
+    update_cache: true
+
+- name: Dowload jdk
+  get_url:
+    url: https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
+    dest: "{{ java_download_localtion }}"
+  
+- name: Unzip jdk
+  unarchive:
+    src: "{{ java_download_localtion }}"
+    dest: /opt
+    remote_src: true
+
+- name: Dowload maven 
+  get_url:
+    url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+    dest: "{{ maven_download_localtion }}" 
+
+- name: Unzip maven
+  unarchive:
+    src: "{{ maven_download_localtion }}"
+    dest: /opt
+    remote_src: true
+
+- name: Set JAVA_HOME && MAVEN_HOME
+  lineinfile:
+    path: /etc/profile
+    create: true
+    state: present
+    line: "{{ item }}"
+  with_items:
+    - 'export JAVA_HOME="/opt/jdk-21.0.1"'
+    - 'export MAVEN_HOME="/opt/apache-maven-3.9.6"'
+    - 'export PATH=$PATH:$JAVA_HOME/bin'
+    - 'export PATH=$PATH:$MAVEN_HOME/bin'
+
+- name: Reload etc/profile file
+  shell:
+    cmd: "source /etc/profile"
+    executable: /bin/bash
+        #### tasks file for java

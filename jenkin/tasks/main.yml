@@ -1,0 +1,23 @@
+- name: Start by importing the GPG key. The GPG key verifies package integrity but there is no output
+  shell:
+    cmd: sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    executable: /bin/bash
+- name: Add the Jenkins software repository to the source list and provide the authentication key
+  shell:
+    cmd: echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+    executable: /bin/bash
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+    state: latest
+
+- name: Install jenkins
+  apt:
+    name: jenkins
+    state: latest
+
+- name: Start jenkins
+  service:
+    name: jenkins
+    state: started
