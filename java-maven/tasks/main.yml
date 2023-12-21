@@ -6,7 +6,7 @@
 
 - name: Dowload jdk
   get_url:
-    url: https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
+    url: https://download.oracle.com/java/17/archive/jdk-17.0.9_linux-x64_bin.tar.gz
     dest: "{{ java_download_localtion }}"
   
 - name: Unzip jdk
@@ -33,7 +33,7 @@
     state: present
     line: "{{ item }}"
   with_items:
-    - 'export JAVA_HOME="/opt/jdk-21.0.1"'
+    - 'export JAVA_HOME="/opt/jdk-17.0.9"'
     - 'export MAVEN_HOME="/opt/apache-maven-3.9.6"'
     - 'export PATH=$PATH:$JAVA_HOME/bin'
     - 'export PATH=$PATH:$MAVEN_HOME/bin'

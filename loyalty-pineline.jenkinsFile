@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+    tools {
+        jdk 'jdk-21'
+        maven 'maven-3.9.6'
+    }
+    stages{
+        stage("clean workspace"){
+            steps{
+                cleanWs();
+            }
+        }
+
+        stage("Checkout from git"){
+            steps{
+                git branch 'develop', url 'https://github.com/Toanbui97/loyalty.git'
+            }
+        }
+
+        stage("Build jar"){
+            steps{
+                sh "mvn clean install -U -DskipTest"
+            }
+        }
+
+        // stage("Build docker"){
+        //     steps{
+        //         script{
+        //             withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+        //                 sh "docker build -t toanbv1997/loyalty-cms -f"
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}
