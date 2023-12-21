@@ -1,4 +1,3 @@
 ---
 java_download_localtion: /opt/openjdk-17.bin.tar.gz
 maven_download_localtion: /opt/maven-3.8.8.bin.tar.gz
-# vars file for java
