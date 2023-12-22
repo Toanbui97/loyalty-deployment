@@ -39,11 +39,12 @@
 
 - name: Change jenkin port
   lineinfile:
-    path: /etc/default/jenkins
-    regex: 'HTTP_PORT=8080'
-    line: 'HTTP_PORT=9090'
+    path: /usr/lib/systemd/system/jenkins.service
+    regex: 'JENKINS_PORT=8080'
+    line: 'JENKINS_PORT=9090'
     backrefs: true
 
+    Environment="JENKINS_PORT=8080"
 - name: Start jenkins
   service:
     name: jenkins
