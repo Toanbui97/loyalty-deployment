@@ -70,6 +70,16 @@
     cmd: ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
     creates: /usr/bin/docker-compose
 
+- name: Expose docker to tcp 4243
+  ansible.builtin.lineinfile:
+    path: /lib/systemd/system/docker.service
+    regex: 'ExecStart'
+    line: 'ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H fd:// --containerd=/run/containerd/containerd.sock'
+    backrefs: true
+- name: Reload daemon
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
 - name: Restart Docker
   ansible.builtin.service:
     name: docker
