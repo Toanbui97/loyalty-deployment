@@ -88,5 +88,5 @@
 
 - name: Login docker registry
   ansible.builtin.shell:
-    cmd: docker login -u {{ docker_username }} -p {{ docker_pasword }}
+    cmd: docker login -u {{ docker_username }} -p {{ docker_password }}
 #Task file for docker
