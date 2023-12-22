@@ -76,4 +76,7 @@
     state: restarted
     enabled: true
 
+- name: Login docker registry
+  ansible.builtin.shell:
+    cmd: docker login -u {{ docker_username }} -p {{ docker_pasword }}
 #Task file for docker
