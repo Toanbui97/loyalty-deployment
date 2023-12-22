@@ -5,23 +5,23 @@ pipeline{
         maven 'maven-3.8.8'
     }
     stages{
-        // stage("clean workspace"){
-        //     steps{
-        //         cleanWs();
-        //     }
-        // }
+        stage("clean workspace"){
+            steps{
+                cleanWs();
+            }
+        }
 
-        // stage("Checkout from git"){
-        //     steps{
-        //         git branch: 'develop', url: 'https://github.com/Toanbui97/loyalty.git'
-        //     }
-        // }
+        stage("Checkout from git"){
+            steps{
+                git branch: 'develop', url: 'https://github.com/Toanbui97/loyalty.git'
+            }
+        }
 
-        // stage("Build jar"){
-        //     steps{
-        //         sh "mvn clean install -U -DskipTest"
-        //     }
-        // }
+        stage("Build jar"){
+            steps{
+                sh "mvn clean install -U -DskipTest"
+            }
+        }
         
         stage("Build and push image to docker registry"){
             steps{

@@ -47,5 +47,5 @@
 - name: Start jenkins
   service:
     name: jenkins
-    state: restated
+    state: restarted
     enabled: true
